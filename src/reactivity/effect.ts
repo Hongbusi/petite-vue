@@ -31,8 +31,8 @@ export function track(target, key) {
 export function trigget(target, key) {
   const depsMap = bucket.get(target)
   if (!depsMap) return
-  const effect = depsMap.get(key)
-  effect && effect.forEach(fn => fn.run())
+  const deps = depsMap.get(key)
+  deps && deps.forEach(effect => effect.run())
 }
 
 export function effect(fn) {
