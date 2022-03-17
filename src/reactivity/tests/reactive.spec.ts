@@ -1,7 +1,7 @@
 import { reactive } from '../reactive'
 
 describe('reactive', () => {
-  it('happy path', () => {
+  it('test', () => {
     const original = { foo: 1 }
     const observed = reactive(original)
     expect(observed).not.toBe(original)

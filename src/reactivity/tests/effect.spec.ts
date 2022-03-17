@@ -2,18 +2,13 @@ import { reactive } from '../reactive'
 import { effect } from '../effect'
 
 describe('effect', () => {
-  it('happy path', () => {
-    const user = reactive({
-      age: 10
-    })
+  it('test', () => {
+    let dummy
+    const counter = reactive({ num: 0 })
+    effect(() => (dummy = counter.num))
 
-    let nextAge
-    effect(() => {
-      nextAge = user.age + 1
-    })
-
-    expect(nextAge).toBe(11)
-    user.age++
-    expect(nextAge).toBe(12)
+    expect(dummy).toBe(0)
+    counter.num = 7
+    expect(dummy).toBe(7)
   })
 })
