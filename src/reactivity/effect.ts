@@ -53,7 +53,7 @@ export function track(target, key) {
   activeEffect.deps.push(deps)
 }
 
-export function trigget(target, key) {
+export function trigger(target, key) {
   const depsMap = bucket.get(target)
   if (!depsMap) return
   const deps = depsMap.get(key)
