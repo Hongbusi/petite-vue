@@ -37,9 +37,11 @@
 - [ ] 支持 $el api
 
 ### runtime-dom
+
 - [ ] 支持 custom renderer
 
 ### compiler-core
+
 - [ ] 解析插值
 - [ ] 解析 element
 - [ ] 解析 text
