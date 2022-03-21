@@ -1,5 +1,7 @@
 # petite-vue
 
+基于 [Vue](https://github.com/vuejs/core) 实现，用于深入学习 `Vue3`。
+
 ## Tasking
 
 ### reactivity
