@@ -18,7 +18,7 @@
 - [x] 支持嵌套 readonly
 - [x] 支持 shallowReadonly
 - [x] 支持 isProxy
-- [ ] ref 的实现
+- [x] ref 的实现
 - [ ] computed 的实现
 - [ ] 支持 toRaw
 - [ ] 支持 proxyRefs
