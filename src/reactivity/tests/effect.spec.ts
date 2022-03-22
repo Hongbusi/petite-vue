@@ -1,7 +1,7 @@
 import { reactive } from '../reactive'
 import { effect, stop } from '../effect'
 
-describe('effect', () => {
+describe('reactivity/effect', () => {
   it('should observe basic properties', () => {
     let dummy
     const counter = reactive({ num: 0 })

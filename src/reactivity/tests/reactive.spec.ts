@@ -1,6 +1,6 @@
 import { reactive } from '../reactive'
 
-describe('reactive', () => {
+describe('reactivity/reactive', () => {
   it('test', () => {
     const original = { foo: 1 }
     const observed = reactive(original)
