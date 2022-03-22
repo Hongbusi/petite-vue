@@ -13,6 +13,7 @@
 - [x] 支持 isReactive
 - [x] 支持 isReadonly
 - [x] 支持嵌套 reactive
+- [x] 支持嵌套 readonly
 - [ ] ref 的实现
 - [ ] computed 的实现
 - [ ] 支持 toRaw
