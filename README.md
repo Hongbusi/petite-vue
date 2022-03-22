@@ -12,9 +12,9 @@
 - [x] readonly 的实现
 - [x] 支持 isReactive
 - [x] 支持 isReadonly
+- [x] 支持嵌套 reactive
 - [ ] ref 的实现
 - [ ] computed 的实现
-- [ ] 支持嵌套 reactive
 - [ ] 支持 toRaw
 - [ ] 支持 effect.scheduler
 - [ ] 支持 effect.stop
