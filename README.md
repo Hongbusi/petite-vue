@@ -7,11 +7,11 @@
 ### reactivity
 
 - [x] reactive 的实现
-- [ ] ref 的实现
+- [x] track 依赖收集
+- [x] trigger 触发依赖
 - [x] readonly 的实现
+- [ ] ref 的实现
 - [ ] computed 的实现
-- [ ] track 依赖收集
-- [ ] trigger 触发依赖
 - [ ] 支持 isReactive
 - [ ] 支持嵌套 reactive
 - [ ] 支持 toRaw
