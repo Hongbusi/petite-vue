@@ -6,7 +6,7 @@
 
 ### reactivity
 
-- [ ] reactive 的实现
+- [x] reactive 的实现
 - [ ] ref 的实现
 - [ ] readonly 的实现
 - [ ] computed 的实现
