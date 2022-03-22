@@ -12,7 +12,7 @@ describe('reactivity/readonly', () => {
     expect(wrapped.foo).toBe(1)
   })
 
-  it('warn then call set', () => {
+  it('should call console.warn when set', () => {
     console.warn = jest.fn()
 
     const user = readonly({
