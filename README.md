@@ -17,10 +17,10 @@
 - [x] 支持嵌套 reactive
 - [x] 支持嵌套 readonly
 - [ ] 支持 shallowReadonly
+- [ ] 支持 isProxy
 - [ ] ref 的实现
 - [ ] computed 的实现
 - [ ] 支持 toRaw
-- [ ] 支持 isProxy
 - [ ] 支持 proxyRefs
 
 ### runtime-core
