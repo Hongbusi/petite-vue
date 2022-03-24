@@ -21,14 +21,14 @@
 - [x] ref 的实现
 - [x] 支持 isRef
 - [x] 支持 unref
-- [ ] computed 的实现
+- [x] 支持 proxyRefs
+- [x] computed 的实现
 - [ ] 支持 toRaw
-- [ ] 支持 proxyRefs
 
 ### runtime-core
 
+- [x] 支持 element 类型
 - [ ] 支持组件类型
-- [ ] 支持 element 类型
 - [ ] 初始化 props
 - [ ] setup 可获取 props 和 context
 - [ ] 支持 component emit
