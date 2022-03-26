@@ -16,7 +16,7 @@ export const App = {
           console.log('mousedown')
         }
       },
-      [h('div', {}, `h1, ${this.message}`), h(foo, { count: 123 })]
+      [h('div', {}, `h1, ${this.message}`), h(foo, { count: 1 })]
       // `h1, ${this.message}`
       // [h('p', { class: 'red' }, 'Hello World'), h('p', { class: 'green' }, 'Hello World')]
     )
