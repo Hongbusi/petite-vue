@@ -36,7 +36,7 @@
 - [x] 支持 $el api
 - [x] 支持最基础的 slots
 - [x] 支持 Fragment
-- [ ] 支持 Text 类型节点
+- [x] 支持 Text 类型节点
 - [x] 支持 getCurrentInstance
 - [x] 支持 provide/inject
 - [ ] 支持组件类型
