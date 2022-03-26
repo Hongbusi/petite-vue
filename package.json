@@ -7,9 +7,6 @@
     "test": "jest",
     "build": "rollup -c rollup.config.js"
   },
-  "eslintConfig": {
-    "extends": "@hongbusi"
-  },
   "devDependencies": {
     "@babel/core": "^7.17.7",
     "@babel/preset-env": "^7.16.11",
