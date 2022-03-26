@@ -1,8 +1,9 @@
-import { h } from '../../lib/petite-vue.esm.js'
+import { h, getCurrentInstance } from '../../lib/petite-vue.esm.js'
 
 export const Foo = {
   setup() {
-    return {}
+    const instance = getCurrentInstance()
+    console.log('Foo', instance)
   },
 
   render() {
