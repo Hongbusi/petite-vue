@@ -1,20 +1,12 @@
 import { h } from '../../lib/petite-vue.esm.js'
 
 export const Foo = {
-  setup(props, { emit }) {
-    const emitAdd = () => {
-      emit('add', 1, 2)
-      emit('add-foo')
-    }
-
-    return {
-      emitAdd
-    }
+  setup() {
+    return {}
   },
 
   render() {
-    const btn = h('button', { onClick: this.emitAdd }, 'emitAdd')
-    const foo = h('p', {}, 'foo')
-    return h('div', {}, [btn, foo])
+    const foo = h('p', {}, 'Foo')
+    return h('div', {}, [foo])
   }
 }
