@@ -4,8 +4,11 @@ import { foo } from './Foo.js'
 export const App = {
   render() {
     return h('div', {}, [h('div', {}, `h1, ${this.message}`), h(foo, {
-      onAdd() {
-        console.log('on-add')
+      onAdd(a, b) {
+        console.log('on-add', a, b)
+      },
+      onAddFoo() {
+        console.log('on-add-foo')
       }
     })])
   },
