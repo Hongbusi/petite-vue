@@ -1,4 +1,5 @@
 import { h } from '../../lib/petite-vue.esm.js'
+import { foo } from './Foo.js'
 
 window.self = null
 export const App = {
@@ -15,7 +16,8 @@ export const App = {
           console.log('mousedown')
         }
       },
-      `h1, ${this.message}`
+      [h('div', {}, `h1, ${this.message}`), h(foo, { count: 123 })]
+      // `h1, ${this.message}`
       // [h('p', { class: 'red' }, 'Hello World'), h('p', { class: 'green' }, 'Hello World')]
     )
   },
