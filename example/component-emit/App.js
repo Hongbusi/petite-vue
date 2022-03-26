@@ -8,7 +8,7 @@ export const App = {
     return h(
       'div',
       {},
-      [h('div', {}, `h1, ${this.message}`), h(foo, { count: 1 })]
+      [h('div', {}, `h1, ${this.message}`), h(foo)]
     )
   },
 
