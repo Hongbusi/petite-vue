@@ -1,6 +1,6 @@
 import { h } from '../../lib/petite-vue.esm.js'
 
-export const foo = {
+export const Foo = {
   setup(props, { emit }) {
     const emitAdd = () => {
       emit('add', 1, 2)

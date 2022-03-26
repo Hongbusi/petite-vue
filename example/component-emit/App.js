@@ -1,9 +1,9 @@
 import { h } from '../../lib/petite-vue.esm.js'
-import { foo } from './Foo.js'
+import { Foo } from './Foo.js'
 
 export const App = {
   render() {
-    return h('div', {}, [h('div', {}, `h1, ${this.message}`), h(foo, {
+    return h('div', {}, [h('div', {}, `h1, ${this.message}`), h(Foo, {
       onAdd(a, b) {
         console.log('on-add', a, b)
       },
