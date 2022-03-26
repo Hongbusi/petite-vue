@@ -7,7 +7,13 @@ export const App = {
     return h(
       'div', {
         id: 'root',
-        class: ['red', 'bg-green']
+        class: ['red', 'bg-green'],
+        onClick() {
+          console.log('click')
+        },
+        onMousedown() {
+          console.log('mousedown')
+        }
       },
       `h1, ${this.message}`
       // [h('p', { class: 'red' }, 'Hello World'), h('p', { class: 'green' }, 'Hello World')]
