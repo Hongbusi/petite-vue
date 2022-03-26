@@ -28,18 +28,19 @@
 ### runtime-core
 
 - [x] 支持 element 类型
-- [ ] 支持组件类型
-- [ ] 初始化 props
-- [ ] setup 可获取 props 和 context
-- [ ] 支持 component emit
-- [ ] 支持 proxy
-- [ ] 可以在 render 函数中获取 setup 返回的对象
-- [ ] nextTick 的实现
-- [ ] 支持 getCurrentInstance
-- [ ] 支持 provide/inject
-- [ ] 支持最基础的 slots
+- [x] 支持 proxy
+- [x] 初始化 props
+- [x] 支持 component emit
+- [x] 可以在 render 函数中获取 setup 返回的对象
+- [x] setup 可获取 props 和 context
+- [x] 支持 $el api
+- [x] 支持最基础的 slots
+- [x] 支持 Fragment
 - [ ] 支持 Text 类型节点
-- [ ] 支持 $el api
+- [x] 支持 getCurrentInstance
+- [x] 支持 provide/inject
+- [ ] 支持组件类型
+- [ ] nextTick 的实现
 
 ### runtime-dom
 
