@@ -24,7 +24,7 @@ export const App = {
     }
 
     const onChangePropsDemo3 = () => {
-      props.value.foo = {
+      props.value = {
         foo: 'foo'
       }
     }
