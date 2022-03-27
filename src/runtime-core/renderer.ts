@@ -1,99 +1,101 @@
 import { ShapeFlags } from '../shared/ShapeFlags'
 import { createComponentInstance, setupComponent } from './component'
+import { createAppAPI } from './createApp'
 import { Fragment, Text } from './vnode'
 
-export function render(vnode, container) {
-  patch(vnode, container, null)
-}
+export function createRenderer(options) {
+  const { createElement, patchProp, insert } = options
 
-function patch(vnode, container, parentComponent) {
-  const { type, shapeFlag } = vnode
-
-  switch (type) {
-    case Fragment:
-      processFragment(vnode, container, parentComponent)
-      break
-
-    case Text:
-      processText(vnode, container)
-      break
-
-    default:
-      if (shapeFlag & ShapeFlags.ELEMENT) {
-        processElement(vnode, container, parentComponent)
-      }
-      else if (shapeFlag & ShapeFlags.STATEFUL_COMPONENT) {
-        processComponent(vnode, container, parentComponent)
-      }
-      break
-  }
-}
-
-function processFragment(vnode, container, parentComponent) {
-  mountChildren(vnode, container, parentComponent)
-}
-
-function processText(vnode, container) {
-  const { children } = vnode
-  const textNode = (vnode.el = document.createTextNode(children))
-  container.append(textNode)
-}
-
-function processElement(vnode, container, parentComponent) {
-  mountElement(vnode, container, parentComponent)
-}
-
-function mountElement(vnode, container, parentComponent) {
-  const el = (vnode.el = document.createElement(vnode.type))
-
-  const { children, shapeFlag } = vnode
-
-  if (shapeFlag & ShapeFlags.TEXT_CHILDREN) {
-    el.textContent = children
-  }
-  else if (shapeFlag & ShapeFlags.ARRAY_CHILDREN) {
-    mountChildren(vnode, el, parentComponent)
+  function render(vnode, container) {
+    patch(vnode, container, null)
   }
 
-  const { props } = vnode
-  for (const key in props) {
-    const val = props[key]
+  function patch(vnode, container, parentComponent) {
+    const { type, shapeFlag } = vnode
 
-    const isOn = (key: string) => /^on[A-Z]/.test(key)
-    if (isOn(key)) {
-      const event = key.slice(2).toLowerCase()
-      el.addEventListener(event, val)
-    }
-    else {
-      el.setAttribute(key, val)
+    switch (type) {
+      case Fragment:
+        processFragment(vnode, container, parentComponent)
+        break
+
+      case Text:
+        processText(vnode, container)
+        break
+
+      default:
+        if (shapeFlag & ShapeFlags.ELEMENT) {
+          processElement(vnode, container, parentComponent)
+        }
+        else if (shapeFlag & ShapeFlags.STATEFUL_COMPONENT) {
+          processComponent(vnode, container, parentComponent)
+        }
+        break
     }
   }
 
-  container.append(el)
-}
+  function processFragment(vnode, container, parentComponent) {
+    mountChildren(vnode, container, parentComponent)
+  }
 
-function mountChildren(vnode, container, parentComponent) {
-  vnode.children.forEach((v) => {
-    patch(v, container, parentComponent)
-  })
-}
+  function processText(vnode, container) {
+    const { children } = vnode
+    const textNode = (vnode.el = document.createTextNode(children))
+    container.append(textNode)
+  }
 
-function processComponent(vnode, container, parentComponent) {
-  mountComponent(vnode, container, parentComponent)
-}
+  function processElement(vnode, container, parentComponent) {
+    mountElement(vnode, container, parentComponent)
+  }
 
-function mountComponent(initialVNode, container, parentComponent) {
-  const instance = createComponentInstance(initialVNode, parentComponent)
+  function mountElement(vnode, container, parentComponent) {
+    const el = (vnode.el = createElement(vnode.type))
 
-  setupComponent(instance)
-  setupRenderEffect(instance, initialVNode, container)
-}
+    const { children, shapeFlag } = vnode
 
-function setupRenderEffect(instance, initialVNode, container) {
-  const { proxy } = instance
-  const subTree = instance.render.call(proxy)
+    if (shapeFlag & ShapeFlags.TEXT_CHILDREN) {
+      el.textContent = children
+    }
+    else if (shapeFlag & ShapeFlags.ARRAY_CHILDREN) {
+      mountChildren(vnode, el, parentComponent)
+    }
 
-  patch(subTree, container, instance)
+    const { props } = vnode
+    for (const key in props) {
+      const val = props[key]
 
-  initialVNode.el = subTree.el
+      patchProp(el, key, val)
+    }
+
+    insert(el, container)
+  }
+
+  function mountChildren(vnode, container, parentComponent) {
+    vnode.children.forEach((v) => {
+      patch(v, container, parentComponent)
+    })
+  }
+
+  function processComponent(vnode, container, parentComponent) {
+    mountComponent(vnode, container, parentComponent)
+  }
+
+  function mountComponent(initialVNode, container, parentComponent) {
+    const instance = createComponentInstance(initialVNode, parentComponent)
+
+    setupComponent(instance)
+    setupRenderEffect(instance, initialVNode, container)
+  }
+
+  function setupRenderEffect(instance, initialVNode, container) {
+    const { proxy } = instance
+    const subTree = instance.render.call(proxy)
+
+    patch(subTree, container, instance)
+
+    initialVNode.el = subTree.el
+  }
+
+  return {
+    createApp: createAppAPI(render)
+  }
 }
