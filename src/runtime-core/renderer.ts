@@ -186,7 +186,7 @@ export function createRenderer(options) {
 
         // null undefined
         let newIndex
-        if (prevChild.key !== null) {
+        if (prevChild.key != null) {
           newIndex = keyToNewIndexMap.get(prevChild.key)
         }
         else {
