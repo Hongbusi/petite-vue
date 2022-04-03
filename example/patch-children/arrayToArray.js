@@ -4,18 +4,18 @@ import { h, ref } from '../../lib/petite-vue.esm.js'
 // (a b) c
 // (a b) d e
 
-const prevChildren = [
-  h('p', { key: 'A' }, 'A'),
-  h('p', { key: 'B' }, 'B'),
-  h('p', { key: 'C' }, 'C')
-]
+// const prevChildren = [
+//   h('p', { key: 'A' }, 'A'),
+//   h('p', { key: 'B' }, 'B'),
+//   h('p', { key: 'C' }, 'C')
+// ]
 
-const nextChildren = [
-  h('p', { key: 'A' }, 'A'),
-  h('p', { key: 'B' }, 'B'),
-  h('p', { key: 'D' }, 'D'),
-  h('p', { key: 'E' }, 'E')
-]
+// const nextChildren = [
+//   h('p', { key: 'A' }, 'A'),
+//   h('p', { key: 'B' }, 'B'),
+//   h('p', { key: 'D' }, 'D'),
+//   h('p', { key: 'E' }, 'E')
+// ]
 
 // 2. 右侧的对比
 // a (b c)
@@ -33,6 +33,69 @@ const nextChildren = [
 //   h('p', { key: 'B' }, 'B'),
 //   h('p', { key: 'C' }, 'C')
 // ]
+
+// 3. 新的比老的长，创建新的
+// 左侧
+// (a b)
+// (a b) c
+
+// const prevChildren = [
+//   h('p', { key: 'A' }, 'A'),
+//   h('p', { key: 'B' }, 'B')
+// ]
+
+// const nextChildren = [
+//   h('p', { key: 'A' }, 'A'),
+//   h('p', { key: 'B' }, 'B'),
+//   h('p', { key: 'C' }, 'C')
+// ]
+
+// 右侧
+// (a b)
+// c (a b)
+
+// const prevChildren = [
+//   h('p', { key: 'A' }, 'A'),
+//   h('p', { key: 'B' }, 'B')
+// ]
+
+// const nextChildren = [
+//   h('p', { key: 'D' }, 'D'),
+//   h('p', { key: 'C' }, 'C'),
+//   h('p', { key: 'A' }, 'A'),
+//   h('p', { key: 'B' }, 'B')
+// ]
+
+// 4. 老的比新的长，删除老的
+// 左侧
+// (a b) c
+// (a b)
+
+// const prevChildren = [
+//   h('p', { key: 'A' }, 'A'),
+//   h('p', { key: 'B' }, 'B'),
+//   h('p', { key: 'C' }, 'C')
+// ]
+
+// const nextChildren = [
+//   h('p', { key: 'A' }, 'A'),
+//   h('p', { key: 'B' }, 'B')
+// ]
+
+// 右侧
+// c (a b)
+// (a b)
+
+const prevChildren = [
+  h('p', { key: 'A' }, 'A'),
+  h('p', { key: 'B' }, 'B'),
+  h('p', { key: 'C' }, 'C')
+]
+
+const nextChildren = [
+  h('p', { key: 'B' }, 'B'),
+  h('p', { key: 'C' }, 'C')
+]
 
 export default {
   name: 'ArrayToText',
