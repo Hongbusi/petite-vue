@@ -39,15 +39,15 @@
 - [x] 支持 Text 类型节点
 - [x] 支持 getCurrentInstance
 - [x] 支持 provide/inject
-- [ ] 支持组件类型
-- [ ] nextTick 的实现
+- [x] 支持组件类型
+- [x] nextTick 的实现
 
 ### runtime-dom
 
-- [ ] 支持 custom renderer
+- [x] 支持 custom renderer
 
 ### compiler-core
 
 - [ ] 解析插值
 - [ ] 解析 element
-- [ ] 解析 text
+- [x] 解析 text
