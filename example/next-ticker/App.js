@@ -1,16 +1,22 @@
-import { h, ref } from '../../lib/petite-vue.esm.js'
+import { h, ref, getCurrentInstance, nextTick } from '../../lib/petite-vue.esm.js'
 
 export const App = {
   name: 'App',
 
   setup() {
     const count = ref(0)
+    const instance = getCurrentInstance()
 
     function onClick() {
       for (let i = 0; i < 100; i++) {
         console.log('update')
         count.value = i
       }
+      console.log(instance)
+
+      nextTick(() => {
+        console.log(instance)
+      })
     }
 
     return {
