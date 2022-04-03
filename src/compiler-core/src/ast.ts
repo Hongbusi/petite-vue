@@ -1,4 +1,5 @@
 export const enum NodeTypes {
   INTERPOLATION = 'interpolation',
-  SIMPLE_EXPRESSION = 'simple_expression'
+  SIMPLE_EXPRESSION = 'simple_expression',
+  ELEMENT = 'element'
 }
