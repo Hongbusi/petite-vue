@@ -3,6 +3,7 @@ import { baseParse } from '../src/parse'
 import { transform } from '../src/transform'
 import { transformElement } from '../src/transforms/transformElement'
 import { transformExpression } from '../src/transforms/transformExpression'
+import { transformText } from '../src/transforms/transformText'
 
 describe('compiler-core/codegen', () => {
   it('string', () => {
@@ -22,9 +23,9 @@ describe('compiler-core/codegen', () => {
   })
 
   it('element', () => {
-    const ast = baseParse('<div></div>')
+    const ast = baseParse('<div>hi, {{ message }}</div>')
     transform(ast, {
-      nodeTransforms: [transformElement]
+      nodeTransforms: [transformExpression, transformElement, transformText]
     })
     const { code } = generate(ast)
     expect(code).toMatchSnapshot()

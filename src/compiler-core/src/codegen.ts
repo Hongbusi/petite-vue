@@ -1,3 +1,4 @@
+import { isString } from '../../shared'
 import { NodeTypes } from './ast'
 import { CREATE_ELEMENT_VNODE, helperMapName, TO_DISPLAY_STRING } from './runtimeHelpers'
 
@@ -36,18 +37,21 @@ function getFunctionPreamble(ast, context) {
 function genNode(node, context) {
   switch (node.type) {
     case NodeTypes.TEXT:
-      getText(node, context)
+      genText(node, context)
       break
 
     case NodeTypes.INTERPOLATION:
-      getInterpolation(node, context)
+      genInterpolation(node, context)
       break
 
     case NodeTypes.SIMPLE_EXPRESSION:
-      getExpression(node, context)
+      genExpression(node, context)
       break
     case NodeTypes.ELEMENT:
       genElement(node, context)
+      break
+    case NodeTypes.COMPOUND_EXPRESSION:
+      genCompoundExpression(node, context)
       break
 
     default:
@@ -55,25 +59,63 @@ function genNode(node, context) {
   }
 }
 
-function genElement(node, context) {
-  const { push, helper } = context
-  const { tag } = node
-  push(`${helper(CREATE_ELEMENT_VNODE)}('${tag}')`)
+function genCompoundExpression(node, context) {
+  const { push } = context
+  const children = node.children
+
+  for (let i = 0; i < children.length; i++) {
+    const child = children[i]
+    if (isString(child)) {
+      push(child)
+    }
+    else {
+      genNode(child, context)
+    }
+  }
 }
 
-function getExpression(node, context) {
+function genElement(node, context) {
+  const { push, helper } = context
+  const { tag, children, props } = node
+  push(`${helper(CREATE_ELEMENT_VNODE)}(`)
+  genNodeList(genNullable([tag, props, children]), context)
+  push(')')
+}
+
+function genNodeList(nodes, context) {
+  const { push } = context
+  for (let i = 0; i < nodes.length; i++) {
+    const node = nodes[i]
+    if (isString(node)) {
+      push(node)
+    }
+    else {
+      genNode(node, context)
+    }
+
+    if (i < nodes.length - 1) {
+      push(', ')
+    }
+  }
+}
+
+function genNullable(args) {
+  return args.map(arg => arg || 'null')
+}
+
+function genExpression(node, context) {
   const { push } = context
   push(`${node.content}`)
 }
 
-function getInterpolation(node, context) {
+function genInterpolation(node, context) {
   const { push, helper } = context
   push(`${helper(TO_DISPLAY_STRING)}(`)
   genNode(node.content, context)
   push(')')
 }
 
-function getText(node, context) {
+function genText(node, context) {
   const { push } = context
   push(`"${node.content}"`)
 }
