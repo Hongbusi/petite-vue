@@ -11,10 +11,19 @@ describe('compiler-core/codegen', () => {
     expect(code).toMatchSnapshot()
   })
 
-  it('interpolation ', () => {
+  it('interpolation', () => {
     const ast = baseParse('{{message}}')
     transform(ast, {
       nodeTransforms: [transformExpression]
+    })
+    const { code } = generate(ast)
+    expect(code).toMatchSnapshot()
+  })
+
+  it('element', () => {
+    const ast = baseParse('<div></div>')
+    transform(ast, {
+      nodeTransforms: []
     })
     const { code } = generate(ast)
     expect(code).toMatchSnapshot()
