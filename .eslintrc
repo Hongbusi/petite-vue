@@ -1,6 +1,7 @@
 {
   "extends": "@hongbusi",
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    "no-new-func": "off"
   }
 }
